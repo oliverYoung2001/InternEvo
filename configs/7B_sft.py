@@ -5,7 +5,8 @@ SEQ_LEN = 2048
 HIDDEN_SIZE = 4096
 NUM_ATTENTION_HEAD = 32
 MLP_RATIO = 8 / 3
-NUM_LAYER = 32
+# NUM_LAYER = 32
+NUM_LAYER = 1
 VOCAB_SIZE = 103168
 
 MODEL_ONLY_FOLDER = "local:llm_ckpts/xxxx"
@@ -144,7 +145,8 @@ model = dict(
     dtype="torch.bfloat16",  # Support: "torch.float16", "torch.half", "torch.bfloat16", "torch.float32", "torch.tf32"
     norm_type="rmsnorm",
     layer_norm_epsilon=1e-5,
-    use_flash_attn=True,
+    # use_flash_attn=True,
+    use_flash_attn=False,
     num_chunks=1,  # if num_chunks > 1, interleaved pipeline scheduler is used.
 )
 """

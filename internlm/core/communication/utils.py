@@ -5,7 +5,6 @@ from typing import Dict, List, Tuple, Union
 
 import torch
 import torch.distributed as dist
-from flash_attn.modules.embedding import ParallelGPT2Embeddings
 from torch import nn
 
 from internlm.core.communication.isp import ISPCommunicator
@@ -217,6 +216,7 @@ class ParamAsyncBcastHandler:
             # NOTE: Although the layernorm layer does not have explicit processing,
             # both ISPCommunicator and ParamAsyncBcastHandler handle transformer blocks as granularity,
             # so everything is fine.
+            from flash_attn.modules.embedding import ParallelGPT2Embeddings
             if isp_communicator is None or isinstance(
                 block, (Embedding1D, ParallelGPT2Embeddings, BaseScaleColumnParallelLinear)
             ):
